@@ -1,9 +1,22 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["prettier", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "prettier",
+    "airbnb-base",
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   },
   "rules": {
     "@typescript-eslint/explicit-member-accessibility": 0,
@@ -11,8 +24,59 @@
     "@typescript-eslint/no-parameter-properties": 0,
     "@typescript-eslint/interface-name-prefix": 0,
     "@typescript-eslint/explicit-module-boundary-types": 0,
-    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-var-requires": "off"
+    "@typescript-eslint/no-var-requires": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          [
+            "sibling",
+            "parent",
+            "index"
+          ]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/default": "off",
+    "import/no-named-as-default-member": "off",
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "**/*.test.ts",
+          "**/*.test.tsx"
+        ]
+      }
+    ],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "req"
+        ]
+      }
+    ],
+    "no-return-await": "error",
+    "eqeqeq": "error",
+    "no-unneeded-ternary": "error",
+    "no-console": 1,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": 0,
+    "no-underscore-dangle": ["error", { "allow": ["_id"], "allowAfterThis": true }]
   }
 }
